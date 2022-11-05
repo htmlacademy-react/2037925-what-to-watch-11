@@ -1,5 +1,14 @@
-function App(): JSX.Element {
-  return <p>Hello, world!</p>;
+import FilmsCatalog from '../../pages/main/main';
+
+type AppProps = {
+  title: string;
+  genre: string;
+  date: number;
+}
+
+function App({title, genre, date}: AppProps): JSX.Element {
+  return <FilmsCatalog title={title} genre={genre} date={date}/>;
+
 }
 
 export default App;
