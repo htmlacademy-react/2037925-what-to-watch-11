@@ -7,7 +7,7 @@ import Film from '../../pages/film/film';
 import MyList from '../../pages/my-list/my-list';
 import Player from '../../pages/player/player';
 import SignIn from '../../pages/sign-in/sign-in';
-import ErrorMessage from '../error/404';
+import ErrorMessage from '../error-message/error-message';
 import PrivateRoute from '../../components/private-route/private-route';
 
 type AppProps = {
@@ -36,7 +36,13 @@ function App({title, genre, date}: AppProps): JSX.Element {
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReview />}
+          element={
+            <PrivateRoute
+              authorizationStatus={AuthorizationStatus.NoAuth}
+            >
+              <AddReview />
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.Film}

@@ -1,8 +1,10 @@
+import styles from './error-div.module.css';
+
 function ErrorMessage(): JSX.Element {
   return (
-    <div>
+    <div className={styles.active}>
       <h1>404.</h1>
-      <small>Page not found</small>
+      <p>Page not found</p>
     </div>
   );
 }
