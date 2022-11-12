@@ -1,4 +1,4 @@
-import styles from './error-div.module.css';
+import styles from './error-message.module.css';
 
 function ErrorMessage(): JSX.Element {
   return (

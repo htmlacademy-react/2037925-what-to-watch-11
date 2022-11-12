@@ -1,9 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { FilmTypes } from '../../types/film-types';
 
 import FilmsCatalog from '../../pages/main/main';
 import AddReview from '../../pages/add-review/add-review';
-import Film from '../../pages/film/film';
+import FilmDetails from '../../pages/film/film-details';
 import MyList from '../../pages/my-list/my-list';
 import Player from '../../pages/player/player';
 import SignIn from '../../pages/sign-in/sign-in';
@@ -14,15 +15,16 @@ type AppProps = {
   title: string;
   genre: string;
   date: number;
+  films: FilmTypes;
 }
 
-function App({title, genre, date}: AppProps): JSX.Element {
+function App({title, genre, date, films}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<FilmsCatalog title={title} genre={genre} date={date}/>}
+          element={<FilmsCatalog title={title} genre={genre} date={date} films={films}/>}
         />
         <Route
           path={AppRoute.SignIn}
@@ -46,7 +48,7 @@ function App({title, genre, date}: AppProps): JSX.Element {
         />
         <Route
           path={AppRoute.Film}
-          element={<Film />}
+          element={<FilmDetails films={films}/>}
         />
         <Route
           path={AppRoute.MyList}

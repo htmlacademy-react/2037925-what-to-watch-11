@@ -1,13 +1,16 @@
-import FilmCard from '../../components/film-card/film-card';
+import { FilmTypes } from '../../types/film-types';
+
+import FilmsList from '../../components/film-cards/films-list';
 import Logo from '../../components/logo/logo';
 
 type FilmsCatalogProps = {
   title: string;
   genre: string;
   date: number;
+  films: FilmTypes;
 }
 
-function FilmsCatalog({title, genre, date}: FilmsCatalogProps): JSX.Element {
+function FilmsCatalog({title, genre, date, films}: FilmsCatalogProps): JSX.Element {
   return (
     <body>
       <section className="film-card">
@@ -102,9 +105,7 @@ function FilmsCatalog({title, genre, date}: FilmsCatalogProps): JSX.Element {
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {createArray(20, <FilmCard />)}
-          </div>
+          <FilmsList films={films}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -128,7 +129,5 @@ function FilmsCatalog({title, genre, date}: FilmsCatalogProps): JSX.Element {
     </body>
   );
 }
-
-const createArray = (count: number, item: JSX.Element) => Array.from({length: count}, () => (item));
 
 export default FilmsCatalog;
