@@ -1,38 +1,35 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { Film } from '../../types/film';
 
 import FilmsCatalog from '../../pages/main/main';
 import AddReview from '../../pages/add-review/add-review';
-import Film from '../../pages/film/film';
+import FilmDetails from '../../pages/film-details/film-details';
 import MyList from '../../pages/my-list/my-list';
 import Player from '../../pages/player/player';
 import SignIn from '../../pages/sign-in/sign-in';
-import ErrorMessage from '../error-message/error-message';
+import PageNotFound from '../../pages/page-not-found/page-not-found';
 import PrivateRoute from '../../components/private-route/private-route';
 
 type AppProps = {
   title: string;
   genre: string;
   date: number;
+  films: Film[];
 }
 
-function App({title, genre, date}: AppProps): JSX.Element {
+function App({title, genre, date, films}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<FilmsCatalog title={title} genre={genre} date={date}/>}
+          element={<FilmsCatalog title={title} genre={genre} date={date} films={films}/>}
         />
         <Route
           path={AppRoute.SignIn}
-          element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
-            >
-              <SignIn />
-            </PrivateRoute>
-          }
+          element={<SignIn />}
+
         />
         <Route
           path={AppRoute.AddReview}
@@ -46,7 +43,7 @@ function App({title, genre, date}: AppProps): JSX.Element {
         />
         <Route
           path={AppRoute.Film}
-          element={<Film />}
+          element={<FilmDetails />}
         />
         <Route
           path={AppRoute.MyList}
@@ -64,7 +61,7 @@ function App({title, genre, date}: AppProps): JSX.Element {
         />
         <Route
           path="*"
-          element={<ErrorMessage />}
+          element={<PageNotFound />}
         />
       </Routes>
     </BrowserRouter>

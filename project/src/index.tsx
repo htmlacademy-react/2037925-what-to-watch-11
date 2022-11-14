@@ -1,3 +1,5 @@
+import { films } from './mocks/films';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
@@ -18,6 +20,7 @@ root.render(
       title={Data.title}
       genre={Data.genre}
       date={Data.date}
+      films={films}
     />
   </React.StrictMode>,
 );
