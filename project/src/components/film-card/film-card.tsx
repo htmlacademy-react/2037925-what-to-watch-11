@@ -1,23 +1,23 @@
-import {useState} from 'react';
 import { Film } from '../../types/film';
 
 type FilmCardProps = {
   film: Film;
+  onMouseAction: () => void;
+  onMouseRetraction: () => void;
 }
 
-function FilmCard({film}: FilmCardProps): JSX.Element {
-  const [disactiveFilm, setActiveFilm] = useState(film);
-
+function FilmCard({film, onMouseAction, onMouseRetraction}: FilmCardProps): JSX.Element {
   return (
     <article
+      onMouseOver={() => onMouseAction()}
+      onMouseLeave={() => onMouseRetraction()}
       className="small-film-card catalog__films-card"
-      onMouseOver={() => {setActiveFilm(disactiveFilm);}}
     >
       <div className="small-film-card__image">
-        <img src={disactiveFilm.posterImage} alt={disactiveFilm.name} width="280" height="175" />
+        <img src={film.posterImage} alt={film.name} width="280" height="175" />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{disactiveFilm.name}</a>
+        <a className="small-film-card__link" href="film-page.html">{film.name}</a>
       </h3>
     </article>
   );
